@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cristian NogaleS Zarate | Diseñador Gráfico</title>
+<meta name="description" content="Portafolio profesional de Cristian Nogales. Branding, flyers y contenido digital que vende.">
+<link rel="icon" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
+body{background:linear-gradient(135deg,#2c003e,#4b0082,#800080,#ffdf00);color:#111;overflow-x:hidden;}
+#loader{position:fixed;width:100%;height:100vh;background:#000;display:flex;justify-content:center;align-items:center;z-index:9999;font-size:30px;letter-spacing:3px;}
+nav{position:fixed;width:100%;top:0;display:flex;justify-content:space-between;padding:20px 60px;background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);z-index:1000;}
+.nav-brand{background:linear-gradient(90deg,#00ffff,#ff00ff,#ffdf00);-webkit-background-clip:text;color:transparent;cursor:pointer;font-weight:bold;transition:0.3s;position:relative;}
+.nav-brand:hover{text-shadow:0 0 20px rgba(0,255,255,0.8);filter:brightness(1.2);}
+.nav-brand:active{transform:scale(0.95);}
+nav a{color:white;text-decoration:none;margin:0 15px;opacity:0.7;transition:0.3s;}
+nav a:hover{opacity:1;color:#ffdf00;text-shadow:0 0 10px #ffdf00;}
+.hero{height:100vh;display:flex;align-items:center;justify-content:space-between;padding:0 80px;}
+.hero h1{font-size:90px;background:linear-gradient(90deg,#ffdf00,#800080,#4b0082);-webkit-background-clip:text;color:transparent;}
+.hero p{margin:20px 0;opacity:0.8;}
+.btn{padding:12px 25px;border-radius:30px;text-decoration:none;color:white;margin-right:10px;transition:0.3s;}
+.primary{background:linear-gradient(90deg,#4b0082,#ffdf00);}
+.secondary{border:1px solid #ffdf00;}
+.btn:hover{transform:scale(1.1);box-shadow:0 0 20px #4b0082;}
+.hero img{width:420px;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);} }
+.reveal{opacity:0;transform:translateY(60px);transition:1s;}
+.reveal.active{opacity:1;transform:translateY(0);}
+.section{padding:100px 80px;}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.card{padding:30px;background:rgba(255,255,255,0.05);border-radius:20px;transition:0.4s;}
+.card:hover{transform:scale(1.1);background:linear-gradient(135deg,#9333ea,#4c1d95);}
+section#sobre-mi{background:linear-gradient(135deg,#fff6ff,#d4a0ff);border-radius:30px;}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
+.project{height:220px;border-radius:20px;overflow:hidden;position:relative;cursor:pointer;background:#111;}
+.project img{width:100%;height:100%;object-fit:cover;transition:0.4s;display:block;}
+.project:hover img{transform:scale(1.2) rotate(2deg);filter:brightness(0.5);}
+.project span{position:absolute;bottom:20px;left:20px;font-weight:bold;font-size:20px;}
+.cursor{width:20px;height:20px;border:2px solid #ffdf00;border-radius:50%;position:fixed;pointer-events:none;transform:translate(-50%,-50%);}
+.cta{margin:80px;padding:50px;border-radius:20px;background:linear-gradient(90deg,#ffdf00,#800080,#4b0082);display:flex;justify-content:space-between;align-items:center;}
+form{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+input,textarea{padding:10px;border:none;border-radius:10px;}
+button{cursor:pointer;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:2000;justify-content:center;align-items:center;}
+.modal img{max-width:80%;max-height:80%;border-radius:20px;}
+.modal.active{display:flex;}
+/* Search overlay styles */
+.search-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:2500;justify-content:center;align-items:flex-start;padding-top:100px;}
+.search-overlay.active{display:flex;}
+.search-box{background:linear-gradient(90deg,#ffffff,#f3e8ff);padding:20px;border-radius:12px;width:min(900px,90%);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.search-input{width:100%;padding:14px;border-radius:10px;border:1px solid rgba(0,0,0,0.1);font-size:16px;margin-bottom:12px}
+.search-results{max-height:60vh;overflow:auto;padding:6px;}
+.search-item{padding:8px;border-bottom:1px solid rgba(0,0,0,0.06);cursor:pointer}
+.highlight{background:yellow;padding:2px 4px;border-radius:4px}
+</style>
+</head>
+
+<body>
+
+<div id="loader">CARGANDO...</div>
+<div class="cursor" id="cursor"></div>
+
+<nav>
+<div class="nav-brand">CRISTIAN NOGALES</div>
+<div>
+<a href="#inicio">Inicio</a>
+<a href="#" onclick="openSearch()" class="btn secondary">Buscar</a>
+<a href="#sobre-mi">Sobre mí</a>
+<a href="#servicios">Servicios</a>
+<a href="#trabajos">Trabajos</a>
+<a href="#contacto">Contacto</a>
+</div>
+</nav>
+
+<section id="inicio" class="hero">
+<div>
+<h1>PORTAFOLIO</h1>
+<p>Diseño que impacta y vende.</p>
+<p>Crear branding, flyers y contenido visual que convierte clientes para emprendedores y marcas.</p>
+<a href="#trabajos" class="btn primary">Ver trabajos</a>
+<a href="#contacto" class="btn secondary">Enviar mensaje</a>
+<a href="mi curriculum-pdf1.pdf" download class="btn secondary">Descargar CV</a>
+</div>
+<img src="ori.png">
+</section>
+
+<section id="sobre-mi" class="section reveal">
+<h2>Sobre mí</h2>
+<p style="opacity:0.8;margin:20px 0;line-height:1.7;max-width:700px;">Soy diseñador gráfico con experiencia creando logos, flyers y contenido digital para emprendedores y pequeñas marcas. Trabajo desde el concepto hasta la entrega final, combinando creatividad con estrategias visuales que ayudan a vender y a destacar en redes sociales.</p>
+<div style="display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));">
+<div class="card">
+<h3>Mi historia</h3>
+<p>Comencé en el diseño hace 2 años creando materiales para eventos y negocios locales. Con el tiempo, comence haciendo logos y contenidos que generan impacto, ayudando a clientes a mejorar su imagen y a atraer más clientes.</p>
+</div>
+<div class="card">
+<h3>Qué hago</h3>
+<p>Diseño logos, identidad visual, flyers, publicaciones para Instagram y animaciones sencillas de logos. Mi enfoque es entregar piezas modernas, claras y con estilo profesional.</p>
+</div>
+<div class="card">
+<h3>Mi compromiso</h3>
+<p>Trabajo rápido y directo, escucho tu idea y la transformo en una propuesta visual atractiva. Entrego resultados con calidad y apoyo en cada paso del proceso.</p>
+</div>
+</div>
+</section>
+
+<section id="servicios" class="section reveal">
+<h2>Servicios</h2>
+<div class="services">
+<div class="card">Diseño Gráfico</div>
+<div class="card">Animación de logos</div>
+<div class="card">Branding</div>
+</div>
+</section>
+
+<section id="trabajos" class="section reveal">
+  <h2>Proyectos</h2>
+  <div class="projects">
+    <!-- Repeat for 20 projects; replace src with your own images -->
+    <div class="project" onclick="showProject('2 (1).jpg')"><img src="2 (1).jpg" loading="lazy"><span>Proyecto 1</span></div>
+    <div class="project" onclick="showProject(' 1.jpg')"><img src="1.jpg" loading="lazy"><span>Proyecto 2</span></div>
+    <div class="project" onclick="showProject('2 (3).jpg')"><img src="2 (3).jpg" loading="lazy"><span>Proyecto 3</span></div>
+    <div class="project" onclick="showProject('2 (4).jpg')"><img src="2 (4).jpg" loading="lazy"><span>Proyecto 4</span></div>
+    <div class="project" onclick="showProject('2 (5).jpg')"><img src="2 (5).jpg" loading="lazy"><span>Proyecto 5</span></div>
+    <div class="project" onclick="showProject('2 (6).jpg')"><img src="2 (6).jpg" loading="lazy"><span>Proyecto 6</span></div>
+    <div class="project" onclick="showProject('2 (7).jpg')"><img src="2 (7).jpg" loading="lazy"><span>Proyecto 7</span></div>
+    <div class="project" onclick="showProject('2 (8).jpg')"><img src="2 (8).jpg" loading="lazy"><span>Proyecto 8</span></div>
+    <div class="project" onclick="showProject('2 (9).jpg')"><img src="2 (9).jpg" loading="lazy"><span>Proyecto 9</span></div>
+    <div class="project" onclick="showProject('2 (10).jpg')"><img src="2 (10).jpg" loading="lazy"><span>Proyecto 10</span></div>
+    <div class="project" onclick="showProject('2 (11).jpg')"><img src="2 (11).jpg" loading="lazy"><span>Proyecto 11</span></div>
+    <div class="project" onclick="showProject('2 (12).jpg')"><img src="2 (12).jpg" loading="lazy"><span>Proyecto 12</span></div>
+    <div class="project" onclick="showProject('2 (13).jpg')"><img src="2 (13).jpg" loading="lazy"><span>Proyecto 13</span></div>
+    <div class="project" onclick="showProject('2 (14).jpg')"><img src="2 (14).jpg" loading="lazy"><span>Proyecto 14</span></div>
+    <div class="project" onclick="showProject('2 (15).jpg')"><img src="2 (15).jpg" loading="lazy"><span>Proyecto 15</span></div>
+    <div class="project" onclick="showProject('mockup.png')"><img src="mockup.png" loading="lazy"><span>Proyecto 16</span></div>
+    <div class="project" onclick="showProject('mockup-DE-UÑAS.png')"><img src="mockup-DE-UÑAS.png" loading="lazy"><span>Proyecto 17</span></div>
+    <div class="project" onclick="showProject('DE-BUS.png')"><img src="DE-BUS.png" loading="lazy"><span>Proyecto 18</span></div>
+    <div class="project" onclick="showProject('logo-wili-rojas.png')"><img src="logo-wili-rojas.png" loading="lazy"><span>Proyecto 19</span></div>
+    <div class="project" onclick="showProject('DE TERRENO.jpg')"><img src="DE TERRENO.jpg" loading="lazy"><span>Proyecto 20</span></div>
+  </div>
+
+</section>
+
+<section id="contacto" class="section reveal">
+<h2>Trabaja conmigo</h2>
+<p style="opacity:0.7;margin-bottom:20px;">Completa el formulario y te responderé en menos de 24 horas 🚀</p>
+
+<form id="contactForm" onsubmit="sendMail(event)" class="premium-form">
+
+<input type="text" name="nombre" placeholder="Tu nombre completo" required>
+<input type="email" name="email" placeholder="Tu correo electrónico" required>
+
+<label>Servicio</label>
+<select name="servicio" required>
+<option value="">Selecciona</option>
+<option>Diseño de flyers</option>
+<option>Branding / Logo</option>
+<option>Redes sociales</option>
+<option>Animación de logos</option>
+</select>
+
+<label>Presupuesto</label>
+<select name="presupuesto">
+<option>Menos de $50</option>
+<option>$50 - $100</option>
+<option>$100 - $300</option>
+<option>$300+</option>
+</select>
+
+<label>Tiempo de entrega</label>
+<select name="tiempo">
+<option>Urgente (1-2 días)</option>
+<option>Esta semana</option>
+<option>Este mes</option>
+</select>
+
+<textarea name="mensaje" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+
+<button type="submit" class="btn primary">Enviar solicitud</button>
+
+<div id="success" style="display:none;margin-top:15px;color:#4ade80;">✅ Mensaje listo para enviar. Revisa tu correo.</div>
+<div id="error" style="display:none;margin-top:15px;color:#f87171;">⚠️ Completa todos los campos requeridos.</div>
+
+</form>
+</section>
+
+<div class="cta">
+<h2>¿Trabajamos juntos?</h2>
+<a href="#contacto" class="btn secondary">Abrir formulario</a>
+<a href="https://wa.me/56930866556" target="_blank" rel="noopener noreferrer" class="btn primary">WhatsApp</a>
+</div>
+
+<footer>© 2026 Cristian Nogales</footer>
+
+<div id="projectModal" class="modal" onclick="closeModal()">
+<img id="modalImage" src="" alt="Proyecto">
+</div>
+
+<!-- Search overlay -->
+<div id="searchOverlay" class="search-overlay" onclick="if(event.target===this) closeSearch()">
+  <div class="search-box" onclick="event.stopPropagation()">
+    <input id="siteSearchInput" class="search-input" placeholder="Buscar en la página (ej. logo, branding, proyecto)..." oninput="performSearch(this.value)">
+    <div id="searchResults" class="search-results"></div>
+    <div style="text-align:right;margin-top:10px"><button class="btn secondary" onclick="closeSearch()">Cerrar</button></div>
+  </div>
+</div>
+
+<script>
+window.onload=()=>{document.getElementById('loader').style.display='none';}
+window.addEventListener('scroll',()=>{
+document.querySelectorAll('.reveal').forEach(el=>{
+let top=el.getBoundingClientRect().top;
+if(top<window.innerHeight-100){el.classList.add('active');}
+});
+});
+const cursor=document.getElementById('cursor');
+document.addEventListener('mousemove',e=>{
+cursor.style.top=e.clientY+'px';
+cursor.style.left=e.clientX+'px';
+});
+function showProject(imgSrc){
+document.getElementById('modalImage').src=imgSrc;
+document.getElementById('projectModal').classList.add('active');
+}
+function closeModal(){
+  document.getElementById('projectModal').classList.remove('active');
+}
+
+// Search functions
+function openSearch(){
+  document.getElementById('searchOverlay').classList.add('active');
+  setTimeout(()=>document.getElementById('siteSearchInput').focus(),100);
+  clearHighlights();
+  document.getElementById('searchResults').innerHTML = '';
+}
+function closeSearch(){
+  document.getElementById('searchOverlay').classList.remove('active');
+  document.getElementById('siteSearchInput').value = '';
+  clearHighlights();
+  document.getElementById('searchResults').innerHTML = '';
+}
+
+function escapeRegExp(string){
+  return string.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&');
+}
+
+function clearHighlights(){
+  document.querySelectorAll('.highlight').forEach(span=>{
+    const parent = span.parentNode;
+    parent.replaceChild(document.createTextNode(span.textContent), span);
+    parent.normalize();
+  });
+}
+
+function performSearch(q){
+  const query = q.trim();
+  const resultsEl = document.getElementById('searchResults');
+  resultsEl.innerHTML = '';
+  clearHighlights();
+  if(!query) return;
+  const items = Array.from(document.querySelectorAll('h1,h2,h3,p,.card,.project span,nav a'));
+  const qLower = query.toLowerCase();
+  const regex = new RegExp('('+escapeRegExp(query)+')','ig');
+  const found = [];
+  items.forEach(el=>{
+    const text = el.textContent || '';
+    if(text.toLowerCase().includes(qLower)){
+      // highlight in this element
+      if(el.innerHTML) el.innerHTML = el.innerHTML.replace(regex, '<span class="highlight">$1</span>');
+      found.push({el, text});
+    }
+  });
+  if(found.length===0){
+    resultsEl.innerHTML = '<div class="search-item">No se encontraron resultados.</div>';
+    return;
+  }
+  // build results list
+  found.forEach((f,idx)=>{
+    const item = document.createElement('div');
+    item.className = 'search-item';
+    item.innerHTML = '<strong>'+ (idx+1) +'.</strong> ' + f.text.trim().substring(0,150);
+    item.onclick = ()=>{
+      f.el.scrollIntoView({behavior:'smooth', block:'center'});
+      // briefly pulse the element
+      f.el.style.transition = 'box-shadow 0.3s, transform 0.2s';
+      f.el.style.transform = 'scale(1.02)';
+      setTimeout(()=>{f.el.style.transform='';},400);
+    };
+    resultsEl.appendChild(item);
+  });
+}
+</script>
+
+</body>
+</html>
+
